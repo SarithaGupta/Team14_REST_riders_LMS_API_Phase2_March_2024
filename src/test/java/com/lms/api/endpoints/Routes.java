@@ -1,14 +1,12 @@
 package com.lms.api.endpoints;
 
 public class Routes {
-	public static String BASE_URL = "https://userapi-8877aadaae71.herokuapp.com/uap";
-	public static String GET_ALL_USERS_ENDPOINT = "/users";
-	public static String GET_user_by_USER_ID_ENDPOINT = "/user";
-	public static String GET_user_by_USER_First_Name_ENDPOINT = "/users/username";
-	public static String CREATE_USER_ENDPOINT = "/createusers";
-	public static String UPDATE_USER_ENDPOINT = "/updateuser";
-	public static String DELETE_user_by_USER_First_Name_ENDPOINT = "/deleteuser/username";
-	public static String DELETE_user_by_USER_ID_ENDPOINT = "/deleteuser";
+	public static String BASE_URL = "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms";
+	public static String USERLOGIN_ENDPOINT = "/login";
+	public static String GET_ALL_PROGRAMS_ENDPOINT ="/allPrograms";
+	public static String Gets_User_by_Program_Batches ="/users/programBatch/";
+	public static String INVALID_ENDPOINT = "/users/lms/invalidEndPoint";
+	
 
 
 }
