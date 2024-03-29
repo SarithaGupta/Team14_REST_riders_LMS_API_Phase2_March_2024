@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelReader {
-	 public Map<String, String> readRequestBodyDetailsForUserAPIModule() throws IOException {
-	        String path = ".\\src\\test\\resources\\userRequestBodyDetails.xlsx";
+	 public Map<String, String> readRequestBodyDetailsForUserModule() throws IOException {
+	        String path = ".\\src\\test\\resources\\TestData\\LMS_Request_Details.xlsx";
 	        File excelFile = new File(path);
 	        FileInputStream fileInputStream = new FileInputStream(excelFile);
 	        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
