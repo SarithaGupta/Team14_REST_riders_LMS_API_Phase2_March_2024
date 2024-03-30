@@ -17,7 +17,7 @@ public class ExcelReader {
 	        FileInputStream fileInputStream = new FileInputStream(excelFile);
 	        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 
-	        XSSFSheet dataSheet = workbook.getSheet("Sheet1");
+	        XSSFSheet dataSheet = workbook.getSheet("Sheet2");
 	        if (dataSheet == null || dataSheet.getPhysicalNumberOfRows() < 2) {
 	            throw new IllegalStateException("Invalid Excel sheet structure");
 	        }

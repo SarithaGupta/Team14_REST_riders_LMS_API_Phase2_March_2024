@@ -30,6 +30,7 @@ public class User {
 		requestSpec.setContentType(ContentType.JSON)
 		.addHeader("Authorization", "Bearer " + authToken);
 		request = RestAssured.given().spec(requestSpec.build()).log().all();
+		System.out.println(request);
 		
 	}
 	public static void baseSetUpWithNoAuth() {

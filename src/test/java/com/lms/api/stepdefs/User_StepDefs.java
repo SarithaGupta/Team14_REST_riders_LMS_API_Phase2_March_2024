@@ -1,11 +1,8 @@
 package com.lms.api.stepdefs;
-
 import java.io.IOException;
-
 import com.lms.api.actions.User;
 import com.lms.api.endpoints.Routes;
 import com.lms.api.test.UserTests;
-
 import files.User_Login_Payload;
 import io.cucumber.java.en.*;
 import io.restassured.RestAssured;
