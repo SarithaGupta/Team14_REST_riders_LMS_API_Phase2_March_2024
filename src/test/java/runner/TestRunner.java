@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/Features/",
         glue = {"com.lms.api.stepdefs"},
-       // tags = "@EndtoEnd",
+        tags = "@EndtoEnd",
         monochrome = true,
         plugin = {"pretty",
                 "html:target/cucumber-html-report", "json:target/cucumber.json",
