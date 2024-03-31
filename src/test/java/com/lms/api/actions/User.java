@@ -21,17 +21,9 @@ public class User {
 	static RequestSpecification request;
 	static RequestSpecBuilder requestSpec;
 	static ExcelReader excelReader ;
+	//Actions_User_Saritha action_user = new Actions_User_Saritha();
 	
 	
-	public static void baseSetUp() {
-		String authToken = configReaderObj.loadConfig().getProperty("Token");
-		requestSpec = new RequestSpecBuilder();
-		requestSpec.setBaseUri(Routes.BASE_URL);
-		requestSpec.setContentType(ContentType.JSON)
-		.addHeader("Authorization", "Bearer " + authToken);
-		request = RestAssured.given().spec(requestSpec.build()).log().all();
-		
-	}
 	public static void baseSetUpWithNoAuth() {
 		requestSpec = new RequestSpecBuilder();
 		requestSpec.setBaseUri(Routes.BASE_URL);
@@ -39,13 +31,11 @@ public class User {
 		request = RestAssured.given().spec(requestSpec.build()).log().all();
 		
 	}
-	public static Response getUserForValidBatchId()
-	{
+	
+	public static Response HttpRequest(String endpoint) {
+		Response response = request.when().log().all().get(endpoint);
 		
-		Response response = request
-				.when().log().all()
-				.get(Routes.Gets_User_by_Program_Batches +8455);
-		return response;		
+		return response;
 	}
 	public static Response getUserForInvalidBatchId() throws IOException
 	{
@@ -57,11 +47,25 @@ public class User {
 		return response;		
 	}
 	public static Response getUserForValidBatchIdWithInvalidEndPoint()
-	{
-		
+	{		
 		Response response = request
 				.when().log().all()
 				.get(Routes.INVALID_ENDPOINT +8455);
+		return response;		
+	}
+//5.Scenario	
+	public static Response getUserForValidProgramId()
+	{		
+		Response response = request
+				.when().log().all()
+				.get(Routes.Gets_Users_for_Program +16807);
+		return response;		
+	}
+	public static Response getUserForInvalidProgramId() throws IOException
+	{		
+		Response response = request
+				.when().log().all()
+				.get(Routes.Gets_Users_for_Program +excelReader.readRequestBodyDetailsForUserModule().get("invalidProgramId"));
 		return response;		
 	}
 

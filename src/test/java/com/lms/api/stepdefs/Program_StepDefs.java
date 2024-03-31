@@ -34,14 +34,14 @@ public class Program_StepDefs {
 	public void admin_sends_https_request_with_endpoint() {
 		
 		/*response = request.when().log().all()
-				.get(Routes.GET_ALL_PROGRAMS_ENDPOINT);*/
+				.get();*/
 	    
 	}
 
-	@Then("Admin receives {int} OK Status with response body.")
+	/*@Then("Admin receives {int} OK Status with response body.")
 	public void admin_receives_ok_status_with_response_body(Integer int1) {
 		UserTests userTest = new UserTests();
 		userTest.test_Get_User_By_ProgramBatches();
-	}
+	}*/
 
 }
