@@ -24,13 +24,12 @@ public class User {
 	
 	
 	public static void baseSetUp() {
-		String authToken = configReaderObj.loadConfig().getProperty("Token");
+		String authToken = ConfigReaderAndWriter.loadConfig().getProperty("Token");
 		requestSpec = new RequestSpecBuilder();
 		requestSpec.setBaseUri(Routes.BASE_URL);
 		requestSpec.setContentType(ContentType.JSON)
 		.addHeader("Authorization", "Bearer " + authToken);
 		request = RestAssured.given().spec(requestSpec.build()).log().all();
-		System.out.println(request);
 		
 	}
 	public static void baseSetUpWithNoAuth() {
@@ -54,7 +53,7 @@ public class User {
 		
 		Response response = request
 				.when().log().all()
-				.get(Routes.Gets_User_by_Program_Batches +excelReader.readRequestBodyDetailsForUserModule().get("invalidBatchId"));
+				.get(Routes.Gets_User_by_Program_Batches +excelReader.readRequestBodyDetailsForUserAPIModule("Sheet1").get("invalidBatchId"));
 		return response;		
 	}
 	public static Response getUserForValidBatchIdWithInvalidEndPoint()

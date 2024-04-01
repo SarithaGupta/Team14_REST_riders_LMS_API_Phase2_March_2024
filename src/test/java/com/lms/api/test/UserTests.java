@@ -2,10 +2,7 @@ package com.lms.api.test;
 
 import java.io.IOException;
 
-import org.testng.Assert;
-
 import com.lms.api.actions.User;
-
 
 import io.restassured.response.Response;
 

@@ -11,23 +11,23 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelReader {
-	 public Map<String, String> readRequestBodyDetailsForUserModule() throws IOException {
-	        String path = ".\\src\\test\\resources\\TestData\\LMS_Request_Details.xlsx";
+	 public Map<String, String> readRequestBodyDetailsForUserAPIModule(String sheetname) throws IOException {
+	       // String path = ".\\src\\test\\resources\\userRequestBodyDetails.xlsx";
+		 String path = ".\\src\\test\\resources\\TestData\\LMS_Request_Details.xlsx";
 	        File excelFile = new File(path);
 	        FileInputStream fileInputStream = new FileInputStream(excelFile);
 	        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 
-	        XSSFSheet dataSheet = workbook.getSheet("Sheet2");
+	        XSSFSheet dataSheet = workbook.getSheet(sheetname);
 	        if (dataSheet == null || dataSheet.getPhysicalNumberOfRows() < 2) {
 	            throw new IllegalStateException("Invalid Excel sheet structure");
 	        }
 
-	        Map<String, String> requestDetails = new HashMap();
+	        Map<String, String> requestDetails = new HashMap<String, String>();
 
 	        // Assuming the first row contains keys and the second row contains values
 	        Row keyRow = dataSheet.getRow(0);
 	        Row valueRow = dataSheet.getRow(1);
-
 	        Iterator<Cell> keyCellIterator = keyRow.cellIterator();
 	        Iterator<Cell> valueCellIterator = valueRow.cellIterator();
 
@@ -63,8 +63,3 @@ public class ExcelReader {
 	    }
 	
 }
-	
-
-
-
-
