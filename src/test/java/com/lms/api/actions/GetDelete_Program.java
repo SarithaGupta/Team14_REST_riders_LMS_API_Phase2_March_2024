@@ -83,7 +83,7 @@ public class GetDelete_Program {
 		ExcelReader excelreader=new ExcelReader();
 		Response response = request
 				.when().log().all()
-				.get(Routes.GET_PROGRAM_BY_PROGRAMID + excelreader.readRequestBodyDetailsForUserModule().get("InvalidId"));
+				.get(Routes.GET_PROGRAM_BY_PROGRAMID + excelreader.readRequestBodyDetailsForUserModule().get("invalidProgramId"));
 		
 		/*Response response = request
 				.when().log().all()
