@@ -20,7 +20,7 @@ public class ConfigReaderAndWriter {
 	           // System.out.println(System.getProperty("user.dir") + "//src//test//resources//config.properties");
 
 	            FileInputStream ip = new FileInputStream(
-	                    System.getProperty("user.dir") + "\\src\\test\\resources\\config.properties");
+	                    System.getProperty("user.dir") + "/src/test/resources/config.properties");
 	            props.load(ip);
 
 	        } catch (FileNotFoundException e) {
@@ -40,7 +40,7 @@ public class ConfigReaderAndWriter {
 	        //Populating the properties file
 	        props.put(key, value);
 	        //Instantiating the FileInputStream for output file
-	        String path = System.getProperty("user.dir") + "//src//test//resources//config.properties";
+	        String path = System.getProperty("user.dir") + "/src/test/resources/config.properties";
 	        FileOutputStream outputStream = new FileOutputStream(path);
 	        //Storing the properties file
 
