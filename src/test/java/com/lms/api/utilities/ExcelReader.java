@@ -11,13 +11,13 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelReader {
-	 public Map<String, String> readRequestBodyDetailsForUserModule() throws IOException {
-	        String path = ".\\src\\test\\resources\\TestData\\LMS_Request_Details.xlsx";
+	 public static Map<String, String> readRequestBodyDetailsForBatchModule() throws IOException {
+	        String path = "./src/test/resources/TestData/Sheet2.xlsx";
 	        File excelFile = new File(path);
 	        FileInputStream fileInputStream = new FileInputStream(excelFile);
 	        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
 
-	        XSSFSheet dataSheet = workbook.getSheet("Sheet1");
+	        XSSFSheet dataSheet = workbook.getSheet("Sheet2");
 	        if (dataSheet == null || dataSheet.getPhysicalNumberOfRows() < 2) {
 	            throw new IllegalStateException("Invalid Excel sheet structure");
 	        }
@@ -27,6 +27,10 @@ public class ExcelReader {
 	        // Assuming the first row contains keys and the second row contains values
 	        Row keyRow = dataSheet.getRow(0);
 	        Row valueRow = dataSheet.getRow(1);
+	        
+	        //For PUT commands
+	        
+	        
 
 	        Iterator<Cell> keyCellIterator = keyRow.cellIterator();
 	        Iterator<Cell> valueCellIterator = valueRow.cellIterator();
@@ -35,7 +39,13 @@ public class ExcelReader {
 	            Cell keyCell = keyCellIterator.next();
 	            Cell valueCell = valueCellIterator.next();
 
-	            String key = getStringValueFromCell(keyCell);
+	            String key = null;
+				try {
+					key = getStringValueFromCell(keyCell);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	            String value = getStringValueFromCell(valueCell);
 
 	            requestDetails.put(key, value);
@@ -44,7 +54,7 @@ public class ExcelReader {
 	        return requestDetails;
 	    }
 
-	    private String getStringValueFromCell(Cell cell) {
+	    private static String getStringValueFromCell(Cell cell) {
 	        if (cell == null) {
 	            return ""; // Handle null cells if necessary
 	        }
