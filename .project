@@ -31,11 +31,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/test/resources/TestData/Punitha.xlsx</name>
-			<type>1</type>
-			<location>C:/Users/Ranji/Downloads/Punitha.xlsx</location>
-		</link>
-	</linkedResources>
 </projectDescription>
