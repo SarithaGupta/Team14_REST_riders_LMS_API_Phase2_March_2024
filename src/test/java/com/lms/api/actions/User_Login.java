@@ -11,7 +11,7 @@ import io.restassured.response.Response;
 public class User_Login {
 	public static Response createUser()
 	{
-		
+		System.out.println(" TEST !!!");
 		Response response = given()
 				.baseUri(Routes.BASE_URL)				
 				.contentType(ContentType.JSON)
