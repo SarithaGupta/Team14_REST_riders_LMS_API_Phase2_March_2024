@@ -13,10 +13,10 @@ import org.apache.poi.xssf.usermodel.*;
 public class ExcelReader {
 	 public Map<String, String> readRequestBodyDetailsForUserModule() throws IOException {
 	      
-	       FileInputStream fis=new FileInputStream("C://Users//Ranji//Downloads//Punitha.xlsx");
-		 /*String path="./src/test/resources/TestData/Punitha.xlsx";
+	      // FileInputStream fis=new FileInputStream("C://Users//Ranji//Downloads//Punitha.xlsx");
+		 String path=".\\src\\test\\resources\\TestData\\LMS_Request_Details.xlsx";
 		 File excelFile=new File(path);
-		  FileInputStream fis=new FileInputStream();*/
+		  FileInputStream fis=new FileInputStream(excelFile);
 	        XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 	        XSSFSheet dataSheet = workbook.getSheet("Sheet1");

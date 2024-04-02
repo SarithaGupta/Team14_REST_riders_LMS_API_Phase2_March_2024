@@ -70,7 +70,7 @@ public class Put_Program {
 		String programid=configReaderObj.loadConfig().getProperty("programId");
 		Response response = request
 				.when().log().all()
-				.put(Routes.PUT_PROGRAM_BY_PROGRAMID +  excelreader.readRequestBodyDetailsForUserModule().get("InvalidId"));
+				.put(Routes.PUT_PROGRAM_BY_PROGRAMID +  excelreader.readRequestBodyDetailsForUserModule().get("invalidProgramId"));
 		return response;		
 	}
 	
