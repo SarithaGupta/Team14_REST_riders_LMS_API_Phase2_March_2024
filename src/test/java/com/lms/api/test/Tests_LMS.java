@@ -1,9 +1,12 @@
 package com.lms.api.test;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.junit.Assert;
 
 import com.lms.api.actions.Actions_LMS;
@@ -11,6 +14,7 @@ import com.lms.api.actions.Actions_User;
 import com.lms.api.utilities.ConfigReaderAndWriter;
 import com.lms.api.utilities.ExcelReader;
 
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
 public class Tests_LMS {
@@ -24,6 +28,12 @@ public class Tests_LMS {
 	int programId;
 	String roleId;
 	ExcelReader excelReader = new ExcelReader();
+	JsonSchemaValidator jsonValidator;
+	private static String createUserSchema = "./src/test/resources/schema/createUserSchema.JSON";
+	private static String createProgramSchema = "./src/test/resources/schema/createProgramSchema.JSON";
+	private static String createBatchSchema = "./src/test/resources/schema/createBatchSchema.JSON";
+	
+	
 
 	public void test_Post_With_Mandatory_Fields(String scenario) throws IOException {
 		if (scenario.equals(
@@ -32,6 +42,13 @@ public class Tests_LMS {
 			extractAndStoreProgramDetails(response);
 			//Data validation
 			response.then().assertThat().body("programName", Matchers.is(programName));
+			//schema validation
+			jsonValidator = JsonSchemaValidator
+		             .matchesJsonSchemaInClasspath(createProgramSchema);
+
+		     // Validate the response against the JSON schema
+		     response.then().assertThat().body(jsonValidator);
+
 
 		} else if (scenario.equals(
 				"Check if admin is able to create a new Admin with valid endpoint and request body with mandatory fields")) {
@@ -42,6 +59,12 @@ public class Tests_LMS {
 			//Data validation
 			response.then().assertThat().body("userPhoneNumber", Matchers.is(userPhoneNumber));
 			response.then().assertThat().body("userLoginEmail", Matchers.is(userLoginEmail));
+			//schema validation
+			jsonValidator = JsonSchemaValidator
+		             .matchesJsonSchemaInClasspath(createUserSchema);
+
+		     // Validate the response against the JSON schema
+		     response.then().assertThat().body(jsonValidator);
 
 		} else if (scenario.equals(
 				"Check if admin able to create a Batch with valid endpoint and request body (non existing values)")) {
@@ -50,6 +73,12 @@ public class Tests_LMS {
 			
 			//Data validation
 			response.then().assertThat().body("batchName", Matchers.is(batchName));
+			//schema validation
+			jsonValidator = JsonSchemaValidator
+		             .matchesJsonSchemaInClasspath(createBatchSchema);
+
+		     // Validate the response against the JSON schema
+		     response.then().assertThat().body(jsonValidator);
 		}
 		response.then().log().all().extract().response();
 		validateResponse_For_201_Created(response);
@@ -229,5 +258,14 @@ public class Tests_LMS {
 
 		// Content type validation
 		response.then().assertThat().contentType("application/json");
+	}
+	
+	//schema 
+	public void schemaValidation() {
+	 JsonSchemaValidator jsonValidator = JsonSchemaValidator
+             .matchesJsonSchemaInClasspath(createUserSchema);
+
+     // Validate the response against the JSON schema
+     response.then().assertThat().body(jsonValidator);
 	}
 }
