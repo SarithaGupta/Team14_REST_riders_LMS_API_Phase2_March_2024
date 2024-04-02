@@ -14,7 +14,7 @@ public class ConfigReaderAndWriter {
 	    public static Properties loadConfig() {
 
 
-	        System.out.println("executing LoadProperties.....");
+	       // System.out.println("executing LoadProperties.....");
 	        try {
 
 	           // System.out.println(System.getProperty("user.dir") + "//src//test//resources//config.properties");
@@ -46,7 +46,7 @@ public class ConfigReaderAndWriter {
 
 	        props.store(outputStream, "This is a sample properties file");
 
-	        System.out.println("Properties file created......");
+	       // System.out.println("Properties file created......");
 	    }
 
 	}

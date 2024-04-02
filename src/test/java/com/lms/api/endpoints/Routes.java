@@ -6,6 +6,8 @@ public class Routes {
 	public static String Add_New_Program ="/saveprogram";
 	public static String Create_New_Batch ="/batches";
 	public static String GET_ALL_PROGRAMS ="/allPrograms";
+	public static String Delete_Batch ="/batches/";
+	public static String Delete_Program ="/deletebyprogid/";
 	public static String Creating_User_with_Role   ="/users/roleStatus";
 	public static String Gets_User_by_Program_Batches ="/users/programBatch/";
 	public static String Invalid_Endpoint_for_Program = "/users/program/";

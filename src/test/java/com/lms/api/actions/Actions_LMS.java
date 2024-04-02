@@ -49,7 +49,7 @@ public class Actions_LMS {
         return createPostRequest(Routes.Creating_User_with_Role, userData);
     }
 
-    public Response getRequestUser(String scenario, String batchId, int programId, String roleId) throws IOException {
+    public Response getRequestUser(String scenario, int batchId, int programId, String roleId) throws IOException {
         String endpoint = prepareEndpointForGetRequest(scenario, batchId, programId, roleId);
         return sendGetRequest(endpoint);
     }
@@ -58,6 +58,16 @@ public class Actions_LMS {
         String endpoint = prepareEndpointForGetAllUsers(scenario);
         return sendGetRequest(endpoint);
     }
+    public Response deleteAllBatches(String scenario) {
+        String endpoint = prepareEndpointForDeleteRequest(scenario);
+        return deleteRequest(endpoint);
+    }
+    public Response deleteAllPrograms(String scenario) {
+        String endpoint = prepareEndpointForDeleteRequest(scenario);
+        return deleteRequest(endpoint);
+    }
+    
+
 
     private static Response createPostRequest(String endpoint, HashMap<String, Object> data) {
         return request.when().body(data).post(endpoint);
@@ -65,6 +75,9 @@ public class Actions_LMS {
 
     private static Response sendGetRequest(String endpoint) {
         return request.when().get(endpoint);
+    }
+    private static Response deleteRequest(String endpoint) {
+        return request.when().delete(endpoint);
     }
 
     private static ConfigReaderAndWriter getConfigReader() {
@@ -124,7 +137,7 @@ public class Actions_LMS {
         return userData;
     }
 
-    private static String prepareEndpointForGetRequest(String scenario, String batchId, int programId, String roleId) throws IOException {
+    private static String prepareEndpointForGetRequest(String scenario, int batchId, int programId, String roleId) throws IOException {
         ExcelReader excelReader = new ExcelReader();
         String invalid_Batch_Id = excelReader.readRequestBodyDetailsForUserModule().get("invalidBatchId");
         String invalid_Program_Id = excelReader.readRequestBodyDetailsForUserModule().get("invalidProgramId");
@@ -162,6 +175,20 @@ public class Actions_LMS {
         }
         return endpoint;
     }
+    private static String prepareEndpointForDeleteRequest(String scenario) {
+    	String batchId = ConfigReaderAndWriter.loadConfig().getProperty("batchId");
+    	String programId = ConfigReaderAndWriter.loadConfig().getProperty("programId");
+    	//int batchId = 9810;
+    	//int programId = 17095;
+        String endpoint = "";
+        if (scenario.equals("Check if admin able to delete a Batch with valid Batch ID")) {
+            endpoint = Routes.Delete_Batch + batchId;
+        }else if(scenario.equals("Check if Admin able to delete a program with valid program ID")) {
+        	endpoint = Routes.Delete_Program + programId;
+        }
+        return endpoint;
+    }
+    
 	
 
 }

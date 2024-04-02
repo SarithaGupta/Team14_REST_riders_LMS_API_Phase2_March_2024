@@ -29,13 +29,14 @@ Examples:
 	
 @tag4
 Scenario Outline: Check if admin is able to create a new Admin with valid endpoint and request body with mandatory fields
-Given Admin creates POST request with all mandatory fields for "<scenario>"  
+Given Admin creates POST request with request body with all mandatory fields for "<scenario>" 
 When Admin sends HTTPS Request and  request Body with endpoint for "<scenario>"
-Then Admin receives 201 Created Status with response body for "<scenario>".     
+Then Admin receives 201 Created Status with response body for "<scenario>".    
 
 Examples:
-|scenario |                                                                
+|scenario|                                                                
 |Check if admin is able to create a new Admin with valid endpoint and request body with mandatory fields|
+
 	
 @tag5
 Scenario Outline: Check if admin is able to get the Admins by program batches for valid batch ID
@@ -79,4 +80,26 @@ Then Admin receives 200 OK Status with response body for "<scenario>".
 Examples:  
 
 |scenario |   
-|Check if admin is able to retrieve all Admins with filters|                                                            
+|Check if admin is able to retrieve all Admins with filters| 
+
+@tag9
+Scenario Outline: Check if admin able to delete a Batch with valid Batch ID
+Given Admin creates DELETE Request with valid BatchId
+When Admin sends HTTPS Request with endpoint for "<scenario>" 
+Then Admin receives 200 Ok status with message for "<scenario>"    
+Examples:  
+
+|scenario |   
+|Check if admin able to delete a Batch with valid Batch ID| 
+
+@tag10
+Scenario Outline: Check if Admin able to delete a program with valid program ID
+Given Admin creates DELETE Request with valid ProgramId
+When Admin sends HTTPS Request with endpoint for "<scenario>"  
+Then Admin receives 200 Ok status with message for "<scenario>"  
+  
+Examples:  
+
+|scenario |   
+|Check if Admin able to delete a program with valid program ID| 
+                                                        
